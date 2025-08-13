@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>qx9.gov</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+  <h1>qx9.gov</h1>
+  <table border="1">
+    <tr>
+      <td>IP Address</td>
+      <td id="ip">loading...</td>
+    </tr>
+    <tr>
+      <td>ISP</td>
+      <td id="isp">loading...</td>
+    </tr>
+    <tr>
+      <td>Country</td>
+      <td id="country">loading...</td>
+    </tr>
+    <tr>
+      <td>City</td>
+      <td id="city">loading...</td>
+    </tr>
+    <tr>
+      <td>Google Maps</td>
+      <td>
+        <iframe src="" id="gmaps" width="400" height="300"></iframe>
+      </td>
+    </tr>
+  </table>
+  <p>qx9.gov knows you!</p>
+  <script type="text/javascript">
+    $.getJSON('https://ipapi.co/json/', function(data){
+      document.getElementById("ip").innerText = data.ip;
+      document.getElementById("isp").innerText = data.org;
+      document.getElementById("country").innerText = data.country_name;
+      document.getElementById("city").innerText = data.region;
+      document.getElementById("gmaps").src = "https://www.google.com/maps?q=" + data.latitude + "," + data.longitude + "&output=embed";
+    });
+  </script>
+</body>
+</html>
